@@ -7,7 +7,13 @@ require 'mechanize'
 runtag = ARGV.shift.to_i
 
 a = Mechanize.new {|agent| agent.user_agent_alias = "Mac Safari" }
-a.get("http://railscasts.com/?tag_id=#{runtag}") {|page| @total_page = page.at(".next_page").previous_element.text.to_i}
+a.get("http://railscasts.com/?tag_id=#{runtag}") {|page|
+  @total_page = if page.at(".next_page") == nil
+                  1
+                else
+                  page.at(".next_page").previous_element.text.to_i
+                end
+}
 
 for i in 1..@total_page do
   a.get("http://railscasts.com/?page=#{i}&tag_id=#{runtag}") do |page|
