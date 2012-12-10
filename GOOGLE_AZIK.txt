@@ -370,6 +370,16 @@ pa	ぱ
 pd	ぺん
 pe	ぺ
 pf	ぽん
+pya	ぴゃ
+pyh	ぴゅう
+pyj	ぴゅん
+pyl	ぴょん
+pyn	ぴゃん
+pyo	ぴょ
+pyp	ぴょう
+pyq	ぴゃい
+pyu	ぴゅ
+pyz	ぴゃん
 pga	ぴゃ
 pgh	ぴゅう
 pgj	ぴゅん
