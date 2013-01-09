@@ -1,5 +1,7 @@
 #Set colour prompt using the name, platform or instance id and avzone
 # usage: put this file in /etc/profile.d/
+#
+# PLATFORM: development, staging, production
 
 if [ -f "/etc/AWS-INSTID" ]; then
         export INSTID=`cat /etc/AWS-INSTID`
