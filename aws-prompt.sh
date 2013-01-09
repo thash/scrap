@@ -1,4 +1,5 @@
 #Set colour prompt using the name, platform or instance id and avzone
+# usage: put this file in /etc/profile.d/
 
 if [ -f "/etc/AWS-INSTID" ]; then
         export INSTID=`cat /etc/AWS-INSTID`
@@ -17,6 +18,8 @@ fi
 NAME=""
 if [ -f "/etc/AWS-NAME" ]; then
         NAME=`cat /etc/AWS-NAME`
+else
+        NAME=`hostname`
 fi
 
 # Define colours
