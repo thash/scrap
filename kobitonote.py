@@ -31,7 +31,7 @@ def iso_8601_jst(t):
 ## AppleScript生成
 def make_script(title, body, created_at, updated_at, tags, url=None):
     def osa_escape(string):
-        return string.replace('¥¥', '¥¥¥¥').replace('"', '¥¥"')
+        return string.replace('\\', '\\\\').replace('"', '\\"')
     def my_datetime(t):
         return time.strftime('my datetime(%Y,%m,%d,%H,%M,%S)', time.localtime(t))
     def make_tag_list(tags):
@@ -73,7 +73,7 @@ tell application "Evernote"
   end repeat
 
   set destNote to null
-  repeat with aNote in (find notes "notebook:" & notebookStr & " intitle:¥¥"" & titleStr & "¥¥"")
+  repeat with aNote in (find notes "notebook:" & notebookStr & " intitle:\\"" & titleStr & "\\"")
     if aNote's creation date = createdAt then
       set destNote to aNote
     end if
@@ -112,7 +112,7 @@ def run_osascript(script, *args):
 ## Kobitoアイテムクラス
 class KobitoItem :
     def __init__(self, row, items_tags={}):
-        z_pk, z_ent, z_opt, zprivate, zcreated_at, zposted_at, zupdated_at, ¥
+        z_pk, z_ent, z_opt, zprivate, zcreated_at, zposted_at, zupdated_at, \
             zbody, zlinked_file, zraw_body, ztitle, zurl, zuuid = row
         self._pk         = z_pk
         self._ent        = z_ent
@@ -131,19 +131,19 @@ class KobitoItem :
 
     def save_in_evernote(self):
         title = self.title
-        body = self.body ¥
-            .replace("<!DOCTYPE HTML>¥n", "") ¥
+        body = self.body \
+            .replace("<!DOCTYPE HTML>\n", "") \
             .replace('rel="stylesheet" href="',
                      'rel="stylesheet" href="/Applications/Kobito.app/Contents/Resources/')
-        body = re.sub(r'[ ¥t]*<script[^¥n]*</script>¥n', r'', body)
-        body = re.sub(r'  <body>¥n<h1>[^¥n]*</h1>', r'<body>', body)
+        body = re.sub(r'[ \t]*<script[^\n]*</script>\n', r'', body)
+        body = re.sub(r'  <body>\n<h1>[^\n]*</h1>', r'<body>', body)
 
         script = make_script(title, body, self.created_at, self.updated_at, self.tags, self.url)
         # print script
 
         sys.stderr.write(iso_8601_jst(self.updated_at))
         sys.stderr.write("「" + self.title + "」")
-        sys.stderr.write(" ".join(self.tags) + "¥n")
+        sys.stderr.write(" ".join(self.tags) + "\n")
         run_osascript(script)
 
 ## Kobito側のタグを取得
@@ -190,7 +190,7 @@ def save_recent_to_evernote():
     def save_current_kobito_time():
         current_kobito_time = time.time() - TIME_OFFSET
         with open(LAST_KOBITO, 'w') as fp:
-            fp.write(str(current_kobito_time) + '¥n')
+            fp.write(str(current_kobito_time) + '\n')
 
     conn = sqlite3.connect(DB_PATH)
 
