@@ -112,16 +112,19 @@ def run_osascript(script, *args):
 ## Kobitoアイテムクラス
 class KobitoItem :
     def __init__(self, row, items_tags={}):
-        z_pk, z_ent, z_opt, zprivate, zcreated_at, zposted_at, zupdated_at, \
-            zbody, zlinked_file, zraw_body, ztitle, zurl, zuuid = row
+        z_pk, z_ent, z_opt, zprivate, zteam, zcreated_at, zposted_at, zupdated_at, \
+            zupdated_at_on_qiita, zbody, zkey, zlinked_file, zraw_body, ztitle, zurl, zuuid = row
         self._pk         = z_pk
         self._ent        = z_ent
         self._opt        = z_opt
         self.private     = zprivate
+        self.team        = zteam
         self.created_at  = TIME_OFFSET + zcreated_at if zcreated_at else None
         self.posted_at   = TIME_OFFSET + zposted_at if zposted_at else None
         self.updated_at  = TIME_OFFSET + zupdated_at if zupdated_at else None
+        self.updated_at_on_qiita = TIME_OFFSET + zupdated_at_on_qiita if zupdated_at_on_qiita else None
         self.body        = zbody.encode('utf-8')
+        self.key         = zkey.encode('utf-8')
         self.linked_file = zlinked_file
         self.raw_body    = zraw_body.encode('utf-8')
         self.title       = ztitle.encode('utf-8')
