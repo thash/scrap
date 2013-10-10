@@ -101,13 +101,17 @@ end tell
 
 ## AppleScriptを実行
 def run_osascript(script, *args):
-    p = subprocess.Popen(['arch', '-i386', 'osascript', '-e', script] +
-                         [unicode(arg).encode('utf8') for arg in args],
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    err = p.wait()
-    if err:
-        raise RuntimeError(err, p.stderr.read()[:-1].decode('utf8'))
-    return p.stdout.read()[:-1].decode('utf8')
+    #p = subprocess.Popen(['arch', '-i386', 'osascript', '-e', script] +
+    #                     [unicode(arg).encode('utf8') for arg in args],
+    #                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    # err = p.wait()
+    # if err:
+    #     raise RuntimeError(err, p.stderr.read()[:-1].decode('utf8'))
+    # return p.stdout.read()[:-1].decode('utf8')
+    p = subprocess.Popen(['osascript', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = p.communicate(script)
+    print (p.returncode, stdout, stderr)
+
 
 ## Kobitoアイテムクラス
 class KobitoItem :
