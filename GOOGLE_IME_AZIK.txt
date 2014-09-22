@@ -432,6 +432,9 @@ ryq	りゃい
 ryu	りゅ
 ryz	りゃん
 rz	らん
+
+rb	れば
+
 sa	さ
 sd	せん
 se	せ
