@@ -5,7 +5,7 @@
 [	「
 ]	」
 
-q	.
+q	ん
 w	か
 e	た
 r	こ
@@ -45,7 +45,9 @@ g	せ
 ja ヴァ
 js	じ
 jd	で
-jf	げ
+
+jf	ゅ
+
 jg	ぜ
 fa	を
 fs	あ
@@ -56,15 +58,17 @@ h	は
 jj	と
 k	き
 l	い
-:	ん
+:	っ
+'	ー
 fh	ば
-fj	ど
+fj	お
 fk	ぎ
 fl	ぽ
-f:	っ
 jh	み
 jk	の
 jl	ょ
+
+f:	っ
 j:	ー
 
 z	.
@@ -72,7 +76,7 @@ x	ひ
 c	す
 v	ふ
 b	へ
-jz	お
+jz	ど
 jx	び
 jc	ず
 jv	ぶ
@@ -97,3 +101,5 @@ jm	ゆ
 j,	む
 j.	わ
 j/	ぉ
+
+f/	げ
